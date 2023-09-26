@@ -33,12 +33,6 @@ module.exports = async function () {
                         position: "left",
                     },
                     {
-                        to: "developer-docs/",
-                        activeBasePath: "developer-docs",
-                        label: "Developer Docs",
-                        position: "left",
-                    },
-                    {
                         href: "https://github.com/goauthentik/authentik",
                         label: "GitHub",
                         position: "right",

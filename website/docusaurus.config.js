@@ -36,11 +36,6 @@ module.exports = async function () {
                         position: "left",
                     },
                     {
-                        to: "developer-docs/",
-                        label: "Developer",
-                        position: "left",
-                    },
-                    {
                         to: "pricing/",
                         label: "Pricing",
                         position: "left",
