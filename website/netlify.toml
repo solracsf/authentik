@@ -37,6 +37,11 @@
   from = "/developer-docs/blueprints*"
   to = "/docs/blueprints:splat"
 
+# Migrate base source docs into main section
+[[redirects]]
+  from = "/integrations/sources*"
+  to = "/docs/sources:splat"
+
 # Container registry
 [[redirects]]
   from = "/v2"
