@@ -27,7 +27,7 @@ module.exports = async function () {
                     { to: "blog", label: "Blog", position: "left" },
                     {
                         to: "docs/",
-                        label: "Docs",
+                        label: "Documentation",
                         position: "left",
                     },
                     {

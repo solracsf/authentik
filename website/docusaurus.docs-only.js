@@ -23,13 +23,19 @@ module.exports = async function () {
                     {
                         to: "docs/",
                         activeBasePath: "docs",
-                        label: "Docs",
+                        label: "Documentation",
                         position: "left",
                     },
                     {
                         to: "integrations/",
                         activeBasePath: "integrations",
                         label: "Integrations",
+                        position: "left",
+                    },
+                    {
+                        to: "developer-docs/",
+                        activeBasePath: "developer-docs",
+                        label: "Developer documentation",
                         position: "left",
                     },
                     {
