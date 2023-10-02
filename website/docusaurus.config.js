@@ -1,4 +1,5 @@
 const fs = require("fs").promises;
+const generateNavbarDropdown = require("./src/utils.js").generateNavbarDropdown;
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = async function () {
@@ -21,34 +22,184 @@ module.exports = async function () {
             navbar: {
                 logo: {
                     alt: "authentik logo",
-                    src: "img/icon_left_brand.svg",
+                    src: "img/icon.svg",
                 },
                 items: [
-                    { to: "blog", label: "Blog", position: "left" },
+                    { to: "blog", label: "Why authentik", position: "left" },
                     {
-                        to: "docs/",
-                        label: "Documentation",
+                        type: "html",
+                        className:
+                            "dropdown dropdown--hoverable dropdown--custom",
+                        value: generateNavbarDropdown(
+                            "Platform",
+                            [
+                                {
+                                    label: "Get started",
+                                    items: [
+                                        {
+                                            label: "Docker compose",
+                                            to: "docs/installation/docker-compose",
+                                        },
+                                        {
+                                            label: "Kubernetes",
+                                            to: "docs/installation/kubernetes",
+                                        },
+                                    ],
+                                },
+                                {
+                                    label: "Documentation",
+                                    items: [
+                                        {
+                                            label: "Installation",
+                                            to: "docs/installation/",
+                                        },
+                                        {
+                                            label: "Integrations",
+                                            to: "integrations/",
+                                        },
+                                        {
+                                            label: "Release notes",
+                                            to: "docs/releases/",
+                                        },
+                                        {
+                                            label: "Roadmap",
+                                            to: "docs/",
+                                        },
+                                    ],
+                                },
+                                {
+                                    label: "Solutions",
+                                    items: [
+                                        {
+                                            label: "Work",
+                                            to: "docs/installation/",
+                                        },
+                                        {
+                                            label: "foo",
+                                            to: "docs/",
+                                        },
+                                        {
+                                            label: "bar",
+                                            to: "integrations/",
+                                        },
+                                        {
+                                            label: "baz",
+                                            to: "integrations/",
+                                        },
+                                    ],
+                                },
+                            ],
+                            `<div class="category enterprise">
+                                <p>Enterprise</p>
+                                <ul>
+                                    <li><a class="dropdown__link" href="">Advantages</a></li>
+                                    <li><a class="dropdown__link" href="">Support</a></li>
+                                    <li><a class="dropdown__link" href="">Pricing</a></li>
+                                </ul>
+                            </div>`,
+                        ),
                         position: "left",
                     },
                     {
-                        to: "integrations/",
                         label: "Integrations",
+                        to: "integrations/",
+                    },
+                    {
+                        label: "Pricing",
+                        to: "pricing/",
+                    },
+                    {
+                        type: "html",
+                        className:
+                            "dropdown dropdown--hoverable dropdown--custom",
+                        value: generateNavbarDropdown("Community", [
+                            {
+                                label: "Connect",
+                                items: [
+                                    {
+                                        label: "Blog",
+                                        to: "blog/",
+                                    },
+                                    {
+                                        label: "Discord",
+                                        to: "https://goauthentik.io/discord",
+                                    },
+                                    {
+                                        label: "GitHub",
+                                        to: "https://github.com/goauthentik/authentik",
+                                    },
+                                ],
+                            },
+                            {
+                                label: "Developer",
+                                items: [
+                                    {
+                                        label: "Set up authentik",
+                                        to: "developer-docs/setup/full-dev-environment/",
+                                    },
+                                    {
+                                        label: "Writing documentation",
+                                        to: "developer-docs/docs/writing-documentation",
+                                    },
+                                ],
+                            },
+                            {
+                                label: "Community",
+                                items: [
+                                    {
+                                        label: "Contributing",
+                                        to: "developer-docs/",
+                                    },
+                                    {
+                                        label: "Events",
+                                        to: "developer-docs/events",
+                                    },
+                                ],
+                            },
+                            {
+                                label: "Resources",
+                                items: [
+                                    {
+                                        label: "Icons & Branding",
+                                        to: "developer-docs/",
+                                    },
+                                ],
+                            },
+                        ]),
                         position: "left",
                     },
                     {
-                        to: "pricing/",
-                        label: "Pricing",
+                        type: "html",
+                        className:
+                            "dropdown dropdown--hoverable dropdown--custom",
+                        value: generateNavbarDropdown("About us", [
+                            {
+                                label: "",
+                                items: [
+                                    {
+                                        label: "The company",
+                                        to: "",
+                                    },
+                                    {
+                                        label: "Jobs",
+                                        to: "",
+                                    },
+                                    {
+                                        label: "Team",
+                                        to: "",
+                                    },
+                                    {
+                                        label: "Contact us",
+                                        to: "",
+                                    },
+                                ],
+                            },
+                        ]),
                         position: "left",
                     },
                     {
                         href: "https://github.com/goauthentik/authentik",
                         className: "header-github-link",
-                        "aria-label": "GitHub repository",
-                        position: "right",
-                    },
-                    {
-                        href: "https://goauthentik.io/discord",
-                        className: "header-discord-link",
                         "aria-label": "GitHub repository",
                         position: "right",
                     },
