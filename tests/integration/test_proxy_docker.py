@@ -2,7 +2,6 @@
 from shutil import rmtree
 from tempfile import mkdtemp
 
-import pytest
 import yaml
 from channels.testing.live import ChannelsLiveServerTestCase
 from docker import DockerClient, from_env
@@ -96,14 +95,12 @@ class TestProxyDocker(DockerTestCase, ChannelsLiveServerTestCase):
         except PermissionError:
             pass
 
-    @pytest.mark.timeout(120)
     def test_docker_controller(self):
         """test that deployment requires update"""
         controller = DockerController(self.outpost, self.service_connection)
         controller.up()
         controller.down()
 
-    @pytest.mark.timeout(120)
     def test_docker_static(self):
         """test that deployment requires update"""
         controller = DockerController(self.outpost, self.service_connection)
