@@ -31489,6 +31489,10 @@ components:
           type: string
           format: date-time
         tenant: {}
+        batch_id:
+          type: string
+          format: uuid
+          nullable: true
       required:
       - action
       - app
@@ -31988,6 +31992,10 @@ components:
           type: string
           format: date-time
         tenant: {}
+        batch_id:
+          type: string
+          format: uuid
+          nullable: true
       required:
       - action
       - app
@@ -34539,6 +34547,16 @@ components:
           type: boolean
           description: Only send notification once, for example when sending a webhook
             into a chat channel.
+        enable_batching:
+          type: boolean
+        batch_timeout:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        max_batch_size:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
       required:
       - mode_verbose
       - name
@@ -34575,6 +34593,16 @@ components:
           type: boolean
           description: Only send notification once, for example when sending a webhook
             into a chat channel.
+        enable_batching:
+          type: boolean
+        batch_timeout:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        max_batch_size:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
       required:
       - name
     NotificationTransportTest:
@@ -37521,6 +37549,10 @@ components:
           type: string
           format: date-time
         tenant: {}
+        batch_id:
+          type: string
+          format: uuid
+          nullable: true
     PatchedExpressionPolicyRequest:
       type: object
       description: Group Membership Policy Serializer
@@ -38038,6 +38070,16 @@ components:
           type: boolean
           description: Only send notification once, for example when sending a webhook
             into a chat channel.
+        enable_batching:
+          type: boolean
+        batch_timeout:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        max_batch_size:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
     PatchedNotificationWebhookMappingRequest:
       type: object
       description: NotificationWebhookMapping Serializer
