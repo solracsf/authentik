@@ -30427,11 +30427,12 @@ components:
           nullable: true
         item_matching_mode:
           $ref: '#/components/schemas/ItemMatchingModeEnum'
-        firebase_config:
-          type: object
-          additionalProperties: {}
-          description: temp
+        cgw_endpoint:
+          type: string
+          format: uri
+          maxLength: 200
       required:
+      - cgw_endpoint
       - component
       - meta_model_name
       - name
@@ -30461,11 +30462,13 @@ components:
           minLength: 1
         item_matching_mode:
           $ref: '#/components/schemas/ItemMatchingModeEnum'
-        firebase_config:
-          type: object
-          additionalProperties: {}
-          description: temp
+        cgw_endpoint:
+          type: string
+          format: uri
+          minLength: 1
+          maxLength: 200
       required:
+      - cgw_endpoint
       - name
     AuthenticatorSMSChallenge:
       type: object
@@ -38231,10 +38234,11 @@ components:
           minLength: 1
         item_matching_mode:
           $ref: '#/components/schemas/ItemMatchingModeEnum'
-        firebase_config:
-          type: object
-          additionalProperties: {}
-          description: temp
+        cgw_endpoint:
+          type: string
+          format: uri
+          minLength: 1
+          maxLength: 200
     PatchedAuthenticatorSMSStageRequest:
       type: object
       description: AuthenticatorSMSStage Serializer
