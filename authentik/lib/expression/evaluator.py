@@ -6,15 +6,18 @@ from textwrap import indent
 from typing import Any, Iterable, Optional
 
 from cachetools import TLRUCache, cached
+from django.apps import apps
 from django.core.exceptions import FieldError
 from guardian.shortcuts import get_anonymous_user
 from rest_framework.serializers import ValidationError
+from RestrictedPython import compile_restricted, limited_builtins, safe_builtins, utility_builtins
 from sentry_sdk.hub import Hub
 from sentry_sdk.tracing import Span
 from structlog.stdlib import get_logger
 
 from authentik.core.models import User
 from authentik.events.models import Event
+from authentik.lib.config import CONFIG
 from authentik.lib.utils.http import get_http_session
 from authentik.policies.models import Policy, PolicyBinding
 from authentik.policies.process import PolicyProcess
@@ -55,6 +58,10 @@ class BaseEvaluator:
             "resolve_dns": BaseEvaluator.expr_resolve_dns,
             "reverse_dns": BaseEvaluator.expr_reverse_dns,
         }
+        for app in apps.get_app_configs():
+            # Load models from each app
+            for model in app.get_models():
+                self._globals[model.__name__] = model
         self._context = {}
 
     @cached(cache=TLRUCache(maxsize=32, ttu=lambda key, value, now: now + 180))
@@ -180,6 +187,18 @@ class BaseEvaluator:
         full_expression += f"\nresult = handler({handler_signature})"
         return full_expression
 
+    def compile(self, expression: str) -> Any:
+        """Parse expression. Raises SyntaxError or ValueError if the syntax is incorrect."""
+        param_keys = self._context.keys()
+        compiler = (
+            compile_restricted if CONFIG.get_bool("epxressions.restricted", False) else compile
+        )
+        return compiler(
+            self.wrap_expression(expression, param_keys),
+            self._filename,
+            "exec",
+        )
+
     def evaluate(self, expression_source: str) -> Any:
         """Parse and evaluate expression. If the syntax is incorrect, a SyntaxError is raised.
         If any exception is raised during execution, it is raised.
@@ -188,17 +207,18 @@ class BaseEvaluator:
             span: Span
             span.description = self._filename
             span.set_data("expression", expression_source)
-            param_keys = self._context.keys()
             try:
-                ast_obj = compile(
-                    self.wrap_expression(expression_source, param_keys),
-                    self._filename,
-                    "exec",
-                )
+                ast_obj = self.compile(expression_source)
             except (SyntaxError, ValueError) as exc:
                 self.handle_error(exc, expression_source)
                 raise exc
             try:
+                if CONFIG.get_bool("expressions.restricted", False):
+                    self._globals["__builtins__"] = {
+                        **safe_builtins,
+                        **limited_builtins,
+                        **utility_builtins,
+                    }
                 _locals = self._context
                 # Yes this is an exec, yes it is potentially bad. Since we limit what variables are
                 # available here, and these policies can only be edited by admins, this is a risk
@@ -221,13 +241,8 @@ class BaseEvaluator:
 
     def validate(self, expression: str) -> bool:
         """Validate expression's syntax, raise ValidationError if Syntax is invalid"""
-        param_keys = self._context.keys()
         try:
-            compile(
-                self.wrap_expression(expression, param_keys),
-                self._filename,
-                "exec",
-            )
+            self.compile(expression)
             return True
         except (ValueError, SyntaxError) as exc:
             raise ValidationError(f"Expression Syntax Error: {str(exc)}") from exc
