@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: authentik
-  version: 2023.10.4
+  version: 2023.10.5
   description: Making authentication simple.
   contact:
     email: hello@goauthentik.io
@@ -487,16 +487,16 @@ components:
         confirmed:
           type: boolean
           readOnly: true
-        last_checkin:
+        state:
           allOf:
           - $ref: '#/components/schemas/MobileDeviceInfo'
           readOnly: true
       required:
       - confirmed
-      - last_checkin
       - meta_model_name
       - name
       - pk
+      - state
       - type
       - verbose_name
       - verbose_name_plural
@@ -540,9 +540,7 @@ components:
           type: string
         app_version:
           type: string
-        others:
-          type: object
-          additionalProperties: {}
+        others: {}
       required:
       - app_version
       - hostname
@@ -568,9 +566,7 @@ components:
         app_version:
           type: string
           minLength: 1
-        others:
-          type: object
-          additionalProperties: {}
+        others: {}
       required:
       - app_version
       - hostname
