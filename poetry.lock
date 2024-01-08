@@ -282,13 +282,13 @@ tests-no-zope = ["attrs[tests-mypy]", "cloudpickle", "hypothesis", "pympler", "p
 
 [[package]]
 name = "authentik-cloud-gateway-client"
-version = "0.2.0"
+version = "0.3.0"
 description = ""
 optional = false
 python-versions = ">=3.12,<3.13"
 files = [
-    {file = "authentik_cloud_gateway_client-0.2.0-py3-none-any.whl", hash = "sha256:523e5659b2ce693fda526a6744d35ee98e2b65c788f3fed9b8f12016e9043d97"},
-    {file = "authentik_cloud_gateway_client-0.2.0.tar.gz", hash = "sha256:458b536c1ea67b4332db250fc9442ba9b1a9ac5ae20e93aa9212da4dccfced7c"},
+    {file = "authentik_cloud_gateway_client-0.3.0-py3-none-any.whl", hash = "sha256:f307b903d7a79807ac3e2286e78e8d96e89ab51341d77530e70322cf67e62077"},
+    {file = "authentik_cloud_gateway_client-0.3.0.tar.gz", hash = "sha256:c0336ef4f13f2dcde4ab510f7bfbb9d50a3bc7301aa57506fbc1f9b871992371"},
 ]
 
 [package.dependencies]
@@ -4643,4 +4643,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.12"
-content-hash = "db562a5e13b13e3f5c76090e7c4ec2fd224b8d2de5fa6121b7f51732f63c101e"
+content-hash = "8fb1351e6b7e4e11cc1fbf60b64fd9d71e0c90b95d39834c7f59167d361cd449"
