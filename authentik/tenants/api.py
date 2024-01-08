@@ -3,6 +3,7 @@ from typing import Any
 
 from django.db import models
 from drf_spectacular.utils import extend_schema
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.fields import CharField, ChoiceField, ListField
@@ -13,10 +14,12 @@ from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
 from rest_framework.viewsets import ModelViewSet
 
+from authentik.api.authentication import TokenAuthentication
 from authentik.api.authorization import SecretKeyFilter
 from authentik.core.api.used_by import UsedByMixin
 from authentik.core.api.utils import PassiveSerializer
 from authentik.lib.config import CONFIG
+from authentik.stages.authenticator_mobile.api.auth import MobileDeviceTokenAuthentication
 from authentik.tenants.models import Tenant
 
 
@@ -130,7 +133,16 @@ class TenantViewSet(UsedByMixin, ModelViewSet):
     @extend_schema(
         responses=CurrentTenantSerializer(many=False),
     )
-    @action(methods=["GET"], detail=False, permission_classes=[AllowAny])
+    @action(
+        methods=["GET"],
+        detail=False,
+        permission_classes=[AllowAny],
+        authentication_classes=[
+            MobileDeviceTokenAuthentication,
+            TokenAuthentication,
+            SessionAuthentication,
+        ],
+    )
     def current(self, request: Request) -> Response:
         """Get current tenant"""
         tenant: Tenant = request._request.tenant

@@ -18807,7 +18807,7 @@ paths:
           * `authentik_stages_authenticator_mobile.mobiledevice` - Mobile Device
           * `authentik_stages_authenticator_sms.authenticatorsmsstage` - SMS Authenticator Setup Stage
           * `authentik_stages_authenticator_sms.smsdevice` - SMS Device
-          * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Stage
+          * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Setup Stage
           * `authentik_stages_authenticator_static.staticdevice` - Static Device
           * `authentik_stages_authenticator_totp.authenticatortotpstage` - TOTP Authenticator Setup Stage
           * `authentik_stages_authenticator_totp.totpdevice` - TOTP Device
@@ -19105,7 +19105,7 @@ paths:
           * `authentik_stages_authenticator_mobile.mobiledevice` - Mobile Device
           * `authentik_stages_authenticator_sms.authenticatorsmsstage` - SMS Authenticator Setup Stage
           * `authentik_stages_authenticator_sms.smsdevice` - SMS Device
-          * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Stage
+          * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Setup Stage
           * `authentik_stages_authenticator_static.staticdevice` - Static Device
           * `authentik_stages_authenticator_totp.authenticatortotpstage` - TOTP Authenticator Setup Stage
           * `authentik_stages_authenticator_totp.totpdevice` - TOTP Device
@@ -24076,7 +24076,7 @@ paths:
         schema:
           type: string
           format: uuid
-        description: A UUID string identifying this Static Authenticator Stage.
+        description: A UUID string identifying this Static Authenticator Setup Stage.
         required: true
       tags:
       - stages
@@ -24110,7 +24110,7 @@ paths:
         schema:
           type: string
           format: uuid
-        description: A UUID string identifying this Static Authenticator Stage.
+        description: A UUID string identifying this Static Authenticator Setup Stage.
         required: true
       tags:
       - stages
@@ -24150,7 +24150,7 @@ paths:
         schema:
           type: string
           format: uuid
-        description: A UUID string identifying this Static Authenticator Stage.
+        description: A UUID string identifying this Static Authenticator Setup Stage.
         required: true
       tags:
       - stages
@@ -24189,7 +24189,7 @@ paths:
         schema:
           type: string
           format: uuid
-        description: A UUID string identifying this Static Authenticator Stage.
+        description: A UUID string identifying this Static Authenticator Setup Stage.
         required: true
       tags:
       - stages
@@ -24220,7 +24220,7 @@ paths:
         schema:
           type: string
           format: uuid
-        description: A UUID string identifying this Static Authenticator Stage.
+        description: A UUID string identifying this Static Authenticator Setup Stage.
         required: true
       tags:
       - stages
@@ -29965,7 +29965,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         user_verification:
           $ref: '#/components/schemas/UserVerificationEnum'
         authenticator_attachment:
@@ -30276,7 +30275,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         client_id:
           type: string
           minLength: 1
@@ -30419,7 +30417,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         item_matching_mode:
           $ref: '#/components/schemas/ItemMatchingModeEnum'
         cgw_endpoint:
@@ -30562,7 +30559,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         provider:
           $ref: '#/components/schemas/ProviderEnum'
         from_number:
@@ -30707,7 +30703,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         token_count:
           type: integer
           maximum: 2147483647
@@ -30828,7 +30823,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         digits:
           $ref: '#/components/schemas/DigitsEnum'
       required:
@@ -32804,7 +32798,7 @@ components:
             * `authentik_stages_authenticator_mobile.mobiledevice` - Mobile Device
             * `authentik_stages_authenticator_sms.authenticatorsmsstage` - SMS Authenticator Setup Stage
             * `authentik_stages_authenticator_sms.smsdevice` - SMS Device
-            * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Stage
+            * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Setup Stage
             * `authentik_stages_authenticator_static.staticdevice` - Static Device
             * `authentik_stages_authenticator_totp.authenticatortotpstage` - TOTP Authenticator Setup Stage
             * `authentik_stages_authenticator_totp.totpdevice` - TOTP Device
@@ -33007,7 +33001,7 @@ components:
             * `authentik_stages_authenticator_mobile.mobiledevice` - Mobile Device
             * `authentik_stages_authenticator_sms.authenticatorsmsstage` - SMS Authenticator Setup Stage
             * `authentik_stages_authenticator_sms.smsdevice` - SMS Device
-            * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Stage
+            * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Setup Stage
             * `authentik_stages_authenticator_static.staticdevice` - Static Device
             * `authentik_stages_authenticator_totp.authenticatortotpstage` - TOTP Authenticator Setup Stage
             * `authentik_stages_authenticator_totp.totpdevice` - TOTP Device
@@ -35587,7 +35581,7 @@ components:
         * `authentik_stages_authenticator_mobile.mobiledevice` - Mobile Device
         * `authentik_stages_authenticator_sms.authenticatorsmsstage` - SMS Authenticator Setup Stage
         * `authentik_stages_authenticator_sms.smsdevice` - SMS Device
-        * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Stage
+        * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Setup Stage
         * `authentik_stages_authenticator_static.staticdevice` - Static Device
         * `authentik_stages_authenticator_totp.authenticatortotpstage` - TOTP Authenticator Setup Stage
         * `authentik_stages_authenticator_totp.totpdevice` - TOTP Device
@@ -38166,7 +38160,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         user_verification:
           $ref: '#/components/schemas/UserVerificationEnum'
         authenticator_attachment:
@@ -38195,7 +38188,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         client_id:
           type: string
           minLength: 1
@@ -38231,7 +38223,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         item_matching_mode:
           $ref: '#/components/schemas/ItemMatchingModeEnum'
         cgw_endpoint:
@@ -38257,7 +38248,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         provider:
           $ref: '#/components/schemas/ProviderEnum'
         from_number:
@@ -38303,7 +38293,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         token_count:
           type: integer
           maximum: 2147483647
@@ -38332,7 +38321,6 @@ components:
         friendly_name:
           type: string
           nullable: true
-          minLength: 1
         digits:
           $ref: '#/components/schemas/DigitsEnum'
     PatchedAuthenticatorValidateStageRequest:
@@ -38779,7 +38767,7 @@ components:
             * `authentik_stages_authenticator_mobile.mobiledevice` - Mobile Device
             * `authentik_stages_authenticator_sms.authenticatorsmsstage` - SMS Authenticator Setup Stage
             * `authentik_stages_authenticator_sms.smsdevice` - SMS Device
-            * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Stage
+            * `authentik_stages_authenticator_static.authenticatorstaticstage` - Static Authenticator Setup Stage
             * `authentik_stages_authenticator_static.staticdevice` - Static Device
             * `authentik_stages_authenticator_totp.authenticatortotpstage` - TOTP Authenticator Setup Stage
             * `authentik_stages_authenticator_totp.totpdevice` - TOTP Device
